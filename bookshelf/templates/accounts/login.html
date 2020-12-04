@@ -1,0 +1,15 @@
+{% extends 'shared/base.html' %}
+{% block title %}Bookshelf | Login{% endblock %}
+{% block site_content %}
+<h1>Login page</h1>
+<div class="row d-flex justify-content-center">
+    <form method="POST" action="{% url 'login user' %}">
+        <input type="hidden" name="return_url" value="{{ request.GET.next }}"/>
+        {% csrf_token %}
+        {{ login_form }}
+        <button class="btn btn-primary">Submit</button>
+        <p>or <a href="{% url 'register user' %}">register</a></p>
+    </form>
+
+</div>
+{% endblock %}
