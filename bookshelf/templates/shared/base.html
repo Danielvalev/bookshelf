@@ -25,13 +25,13 @@
     <div class="collapse navbar-collapse" id="navbarsExample05">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Books</a>
+                <a class="nav-link" href="">Books</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Categories</a>
+                <a class="nav-link" href="">Categories</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Add book</a>
+                <a class="nav-link" href="">Add book</a>
             </li>
         </ul>
         <ul class="navbar-nav justify-content-end">
@@ -47,7 +47,7 @@
                 <a class="nav-link" href="{% url 'login user' %}">Login</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Register</a>
+                <a class="nav-link" href="{% url 'register user' %}">Register</a>
             </li>
             {% endif %}
         </ul>
@@ -57,6 +57,7 @@
     {% block site_content %}
     {% endblock %}
 </div>
+{% include 'shared/footer.html' %}
 </body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

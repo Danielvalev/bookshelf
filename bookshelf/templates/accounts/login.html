@@ -4,6 +4,7 @@
 {% block title %}Login | Bookshelf{% endblock %}
 {% block site_content %}
     <div class="col-md-6 text-center mx-auto">
+
         <div class="text-center">
             <form class="form-signin" method="POST" action="{% url 'login user' %}">
                 {% csrf_token %}

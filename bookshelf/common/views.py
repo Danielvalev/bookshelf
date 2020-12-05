@@ -1,6 +1,12 @@
 from django.shortcuts import render
+from books.models import Book
 
 
 # Create your views here.
+
+
 def landing_page(request):
-    return render(request, 'landing_page.html')
+    context = {
+        'books': Book.objects.all().order_by('id')[:10]
+    }
+    return render(request, 'landing_page.html', context)

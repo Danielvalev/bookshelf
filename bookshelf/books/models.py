@@ -12,9 +12,9 @@ class Category(models.Model):
 
 class Book(models.Model):
     # cover_type choices
-    PAPERBACK = 'paperback'
-    HARDCOVER_CASE_WRAP = 'hardcover case wrap'
-    HARDCOVER_DUST_JACKET = 'hardcover dust jacket'
+    PAPERBACK = 'Paperback'
+    HARDCOVER_CASE_WRAP = 'Hardcover Case Wrap'
+    HARDCOVER_DUST_JACKET = 'Hardcover Dust Jacket'
 
     COVER_TYPES = (
         (PAPERBACK, 'Paperback'),
@@ -23,9 +23,9 @@ class Book(models.Model):
     )
 
     # condition choices
-    NEW = 'new'
-    LIKE_NEW = 'like new'
-    USED = 'used'
+    NEW = 'New'
+    LIKE_NEW = 'Like New'
+    USED = 'Used'
 
     CONDITIONS = (
         (NEW, 'New'),
