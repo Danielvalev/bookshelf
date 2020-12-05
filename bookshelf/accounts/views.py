@@ -1,12 +1,14 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.db import transaction
 from django.shortcuts import render, redirect
-
-# Create your views here.
 from accounts.forms import RegisterForm, ProfileForm, LoginForm
 
 
+# Create your views here.
+
+
+@transaction.atomic
 def register_user(request):
     if request.method == 'GET':
         context = {
