@@ -1,8 +1,11 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import PROTECT
 
 
 # Create your models here.
+
+
 class Category(models.Model):
     name = models.CharField(max_length=50)
 
@@ -42,6 +45,8 @@ class Book(models.Model):
     image = models.ImageField(upload_to='public/book_covers', blank=True, null=True)
     condition = models.CharField(max_length=10, choices=CONDITIONS, default=USED)
     category = models.ForeignKey(Category, on_delete=PROTECT)
+
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.author}, Title: {self.title}'

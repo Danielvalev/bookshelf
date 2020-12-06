@@ -7,6 +7,7 @@
 
         <div class="text-center">
             <form class="form-signin" method="POST" action="{% url 'login user' %}">
+                <input type="hidden" name="return_url" value="{{ request.GET.next }}"/>
                 {% csrf_token %}
                 <img class="mb-4" src="{% static 'images/books_logo.png' %}" alt="Books" width="100" height="100">
                 <h1 class="h3 mb-3 font-weight-normal">Please login</h1>

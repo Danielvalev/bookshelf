@@ -5,4 +5,9 @@ body {
 
 #site-content {
     padding-top: 5rem;
+    margin-bottom: 5rem;
+}
+
+#footer {
+    margin-top: 5rem;
 }

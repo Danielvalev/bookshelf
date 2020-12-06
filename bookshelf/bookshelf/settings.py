@@ -127,4 +127,5 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = join(BASE_DIR, 'media')
 
-LOGIN_URL = '/accounts/login/'
+LOGIN_URL = '/auth/login/'  # for @login_required
+LOGIN_REDIRECT_URL = '/'
