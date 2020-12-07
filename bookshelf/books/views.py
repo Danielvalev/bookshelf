@@ -1,8 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 
-from books.forms import BookForm
-
+from books.forms import CreateBookForm
 
 # Create your views here.
 from books.models import Book
@@ -11,7 +10,7 @@ from books.models import Book
 @login_required
 def add_book(request):
     if request.method == 'GET':
-        form = BookForm()
+        form = CreateBookForm()
 
         context = {
             'form': form,
@@ -19,13 +18,10 @@ def add_book(request):
 
         return render(request, 'books/add_book.html', context)
     else:
-        form = BookForm(request.POST, request.FILES)
+        form = CreateBookForm(request.POST, request.FILES)
         if form.is_valid():
-            print(form)
-            book = Book(user=form.cleaned_data['user'])
-            print(book)
-            book.user = request.user
-            print(f'this is book.user: {book.user}, and this is {book.user_id}')
+            book = form.save(commit=False)  # Need to add commit=False for take the user
+            book.user = request.user  # Add the user from request.user
             form.save()
             return redirect('index')
 
