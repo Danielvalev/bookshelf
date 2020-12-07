@@ -1,10 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from books.models import Book
 
 from books.forms import CreateBookForm
 
 # Create your views here.
-from books.models import Book
 
 
 @login_required
@@ -50,6 +50,9 @@ def details_book(request, pk):
 @login_required
 def edit_book(request, pk):
     book = Book.objects.get(pk=pk)
+    if book.user != request.user:
+        # Cannot do it
+        raise Exception('You have no permission to edit that book, because you are not the owner!')
     if request.method == 'GET':
         form = CreateBookForm(instance=book)
 
@@ -80,7 +83,7 @@ def delete_book(request, pk):
     book = Book.objects.get(pk=pk)
     if book.user != request.user:
         # Cannot do it
-        pass
+        raise Exception('You have no permission to delete that book, because you are not the owner!')
     if request.method == 'GET':
         context = {
             'book': book,

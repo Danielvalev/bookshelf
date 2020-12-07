@@ -1,5 +1,6 @@
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.db import transaction
 from django.shortcuts import render, redirect
 from accounts.forms import RegisterForm, ProfileForm, LoginForm
@@ -77,3 +78,19 @@ def login_user(request):
 def logout_user(request):
     logout(request)
     return redirect('index')
+
+
+def user_profile(request, pk=None):
+    user = request.user if pk is None else User.objects.get(pk=pk)
+    if request.user != user.userprofile.user:
+        # Cannot do it
+        raise Exception('You have no permission to do that!')
+    if request.method == 'GET':
+        context = {
+            'can_edit': request.user == user.userprofile.user,
+            'profile_user': user,
+            'profile': user.userprofile,
+        }
+        return render(request, 'accounts/profile.html', context)
+    else:
+        pass

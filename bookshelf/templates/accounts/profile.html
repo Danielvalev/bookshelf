@@ -1,0 +1,22 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block title %}Profile | Bookshelf{% endblock %}
+{% block site_content %}
+    <div class="col-md-6 text-center mx-auto">
+        Profile.user {{ profile.user }}
+        {{ profile_user.email }}
+        {{ profile_user.first_name }}
+        {{ profile_user.last_name }}
+        {% if profile.profile_picture %}
+            <img src="{{ profile.profile_picture }}" alt="{{ profile.user }}">
+        {% else %}
+            <img src="{% static 'images/profile_picture.png' %}" alt="Default profile picture">
+        {% endif %}
+        {{ profile.about_info }}
+        Last Login {{ profile_user.last_login }}
+
+        {% if can_edit %}
+            <a href="" class="btn btn-lg btn-primary btn-block mt-2">Edit Profile</a>
+        {% endif %}
+    </div>
+{% endblock %}

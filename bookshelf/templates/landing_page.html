@@ -1,5 +1,5 @@
 {% extends 'shared/base.html' %}
-
+{% load static %}
 {% block site_content %}
 
 <div class="jumbotron p-4 p-md-5 text-white rounded bg-success">
@@ -28,7 +28,7 @@
                 <a href="{% url 'details book' book.id %}"><img src="{{ book.image.url }}" alt="{{ book.title }}"
                                                                 width="200" height="300"></a>
                 {% else %}
-                <a href="{% url 'details book' book.id %}"><img src="" alt="No image" width="200" height="300"></a>
+                <a href="{% url 'details book' book.id %}"><img src="{% static 'images/no_image.jpg' %}" alt="No image" width="200" height="300"></a>
                 {% endif %}
             </div>
         </div>
