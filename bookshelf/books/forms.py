@@ -6,3 +6,4 @@ class CreateBookForm(forms.ModelForm):
     class Meta:
         model = Book
         exclude = ('user',)
+

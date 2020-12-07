@@ -7,6 +7,6 @@ from books.models import Book
 
 def landing_page(request):
     context = {
-        'books': Book.objects.all().order_by('id')[:10]
+        'books': Book.objects.all().order_by('-id')[:10]  # .order_by('-id') - newest are on top
     }
     return render(request, 'landing_page.html', context)
