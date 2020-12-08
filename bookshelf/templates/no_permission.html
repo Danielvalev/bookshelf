@@ -1,8 +1,10 @@
 {% extends 'shared/base.html' %}
 {% block title %}No Access | Bookshelf{% endblock %}
 {% block site_content %}
-    <div class="col-md-6 text-center mx-auto">
-        <h2>We are sorry, but you have no permission to do this!</h2>
-
+<div class="col-md-6 text-center mx-auto">
+    <h2>We are sorry, but you have no permission to do this!</h2>
+    <div class="m-2">
+        <a class="btn btn-primary" href="javascript:history.back()">Go back</a>
     </div>
+</div>
 {% endblock %}

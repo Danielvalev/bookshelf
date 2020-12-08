@@ -2,21 +2,61 @@
 {% load static %}
 {% block title %}Profile | Bookshelf{% endblock %}
 {% block site_content %}
-    <div class="col-md-6 text-center mx-auto">
-        Profile.user {{ profile.user }}
-        {{ profile_user.email }}
-        {{ profile_user.first_name }}
-        {{ profile_user.last_name }}
-        {% if profile.profile_picture %}
-            <img src="{{ profile.profile_picture }}" alt="{{ profile.user }}">
-        {% else %}
-            <img src="{% static 'images/profile_picture.png' %}" alt="Default profile picture">
-        {% endif %}
-        {{ profile.about_info }}
-        Last Login {{ profile_user.last_login }}
-
-        {% if can_edit %}
-            <a href="" class="btn btn-lg btn-primary btn-block mt-2">Edit Profile</a>
-        {% endif %}
+<div class="col-md-6 text-center mx-auto">
+    <div class="modal-body">
+        <center>
+            {% if profile.profile_picture %}
+            <img src="{{ profile.profile_picture }}" alt="{{ profile.user }}" height="240" border="0">
+            {% else %}
+            <img src="{% static 'images/profile_picture.png' %}" alt="Default profile picture" height="240" border="0">
+            {% endif %}
+            <h3 class="media-heading">{{ profile_user.first_name }} {{ profile_user.last_name }}</h3>
+            <h4 class="media-heading">Username: {{ profile.user }}</h4>
+            <span><strong>Email: </strong></span>
+            <span>{{ profile_user.email }}</span>
+        </center>
+        <hr>
+        <center>
+            <p class="text-left"><strong>About me: </strong><br>
+                {{ profile.about_info }}
+            </p>
+            <br>
+        </center>
     </div>
+
+    {% if can_edit %}
+    <a href="" class="btn btn-lg btn-primary btn-block mt-2">Edit Profile</a>
+    {% endif %}
+
+
+</div>
+<hr>
+<div class="col-md-12 text-center mx-auto">
+
+    {% if books %}
+    {% else %}
+    <h4>You currently don't have uploaded books</h4>
+    <a href="{% url 'add book' %}" class="btn btn-lg btn-success btn-block mt-2">Add Book</a>
+    {% endif %}
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Cover Type</th>
+            <th scope="col">Details</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.cover_type }}</td>
+            <td><a href="{% url 'details book' book.id %}" class="btn btn-primary">See more</a></td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

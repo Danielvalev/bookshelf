@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db import transaction
 from django.shortcuts import render, redirect
+from books.models import Book
 from accounts.forms import RegisterForm, ProfileForm, LoginForm
 
 
@@ -82,6 +83,7 @@ def logout_user(request):
 
 def user_profile(request, pk=None):
     user = request.user if pk is None else User.objects.get(pk=pk)
+    books = Book.objects.filter(user=request.user)
     if request.user != user.userprofile.user:
         # Cannot do it
         # raise Exception('You have no permission to do that!')
@@ -91,6 +93,7 @@ def user_profile(request, pk=None):
             'can_edit': request.user == user.userprofile.user,
             'profile_user': user,
             'profile': user.userprofile,
+            'books': books,
         }
         return render(request, 'accounts/profile.html', context)
     else:
