@@ -11,3 +11,13 @@ body {
 #footer {
     margin-top: 5rem;
 }
+
+.book-details {
+    font-size: 1.5rem;
+}
+
+.book-details-description {
+    font-size: 1.5rem;
+    margin: 1.5rem;
+    padding: 2rem;
+}

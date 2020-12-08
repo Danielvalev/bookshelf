@@ -3,30 +3,46 @@
 {% load crispy_forms_tags %}
 {% block title %}{{ book.title }} | Bookshelf{% endblock %}
 {% block site_content %}
-    <div class="col-md-6 text-center mx-auto">
+<div class="col-md-12 text-center mx-auto">
 
-        <div class="text-center">
+    <div class="text-center">
+        <div class="text-center" class="book-details-image">
             {% if book.image %}
-                <img src="{{ book.image.url }}" alt="{{ book.title }}" width="200" height="300">
+            <img src="{{ book.image.url }}" alt="{{ book.title }}" width="200" height="300">
             {% else %}
-                <img src="{% static 'images/no_image.jpg' %}" alt="No image" width="200" height="300">
-            {% endif %}
-
-            Title:{{ book.title }}
-            Author:{{ book.author }}
-            Page count:{{ book.page_count }}
-            Description:{{ book.description }}
-            {{ book.cover_type }}
-            {{ book.condition }}
-            {{ book.category }}
-            {% if can_edit %}
-                <a href="{% url 'edit book' book.pk %}" class="btn btn-lg btn-primary btn-block mt-2">Edit Book</a>
-            {% else %}
-                <p>Owner: {{ book.user }}</p>
-            {% endif %}
-            {% if can_edit %}
-                <a href="{% url 'delete book' book.pk %}" class="btn btn-lg btn-danger btn-block mt-2">Delete Book</a>
+            <img src="{% static 'images/no_image.jpg' %}" alt="No image" width="200" height="300">
             {% endif %}
         </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8"><h3>Title: {{ book.title }}</h3></div>
+                <div class="col-sm-4"><p class="book-details">Author: {{ book.author }}</p></div>
+            </div>
+            <div class="row">
+                <div class="col-sm"><p class="book-details">Page count: {{ book.page_count }}</p></div>
+                <div class="col-sm"><p class="book-details">Condition: {{ book.condition }}</p></div>
+                <div class="col-sm"><p class="book-details">Category: {{ book.category }}</p></div>
+            </div>
+        </div>
+
+        <div class="text-center col-md-12">
+            <p class="book-details-description">Description: {{ book.description }}</p>
+        </div>
+        <div class="col-md-12 text-center mx-auto">
+            <div class="col-md-6 text-center mx-auto">
+                {% if can_edit %}
+                <a href="{% url 'edit book' book.pk %}" class="btn btn-lg btn-primary btn-block mt-2">Edit Book</a>
+                {% else %}
+                <p class="book-details">Owner: {{ book.user }}</p>
+                {% endif %}
+            </div>
+            <div class="col-md-6 text-center mx-auto">
+                {% if can_edit %}
+                <a href="{% url 'delete book' book.pk %}" class="btn btn-lg btn-danger btn-block mt-2">Delete Book</a>
+                {% endif %}
+            </div>
+        </div>
+
     </div>
+</div>
 {% endblock %}
