@@ -55,7 +55,8 @@ def edit_book(request, pk):
     book = Book.objects.get(pk=pk)
     if book.user != request.user:
         # Cannot do it
-        raise Exception('You have no permission to edit that book, because you are not the owner!')
+        # raise Exception('You have no permission to edit that book, because you are not the owner!')
+        return render(request, 'no_permission.html')
     if request.method == 'GET':
         form = CreateBookForm(instance=book)
 
@@ -86,7 +87,8 @@ def delete_book(request, pk):
     book = Book.objects.get(pk=pk)
     if book.user != request.user:
         # Cannot do it
-        raise Exception('You have no permission to delete that book, because you are not the owner!')
+        # raise Exception('You have no permission to delete that book, because you are not the owner!')
+        return render(request, 'no_permission.html')
     if request.method == 'GET':
         context = {
             'book': book,

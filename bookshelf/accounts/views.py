@@ -84,7 +84,8 @@ def user_profile(request, pk=None):
     user = request.user if pk is None else User.objects.get(pk=pk)
     if request.user != user.userprofile.user:
         # Cannot do it
-        raise Exception('You have no permission to do that!')
+        # raise Exception('You have no permission to do that!')
+        return render(request, 'no_permission.html')
     if request.method == 'GET':
         context = {
             'can_edit': request.user == user.userprofile.user,
