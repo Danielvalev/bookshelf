@@ -1,8 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.views.generic import ListView
+
 from books.models import Book
 
 from books.forms import CreateBookForm
+
 
 # Create your views here.
 
@@ -93,3 +96,11 @@ def delete_book(request, pk):
     else:
         book.delete()
         return redirect('index')
+
+
+# CBV
+class BooksListView(ListView):
+    template_name = 'books/list_books.html'
+    model = Book
+    context_object_name = 'books'  # Default is object
+    paginate_by = 10

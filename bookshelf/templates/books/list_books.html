@@ -1,0 +1,48 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block site_content %}
+
+<div class="text-center">
+    <h1 class="display-4 font-italic">All Books</h1>
+</div>
+<div class="row mb-2">
+    {% for book in books %}
+    <div class="col-md-6">
+        <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+                <strong class="d-inline-block mb-2 text-primary">{{ book.category }}</strong>
+                <h3 class="mb-0">{{ book.title }}</h3>
+                <div class="mb-1">Author: {{ book.author }}</div>
+                <div class="mb-1">Cover Type: {{ book.cover_type }}</div>
+                <div class="mb-1">Condition: {{ book.condition }}</div>
+                <div class="mb-1">Owner: {{ book.user }}</div>
+                <a href="{% url 'details book' book.id %}" class="stretched-link">See more details</a>
+            </div>
+            <div class="col-auto d-none d-lg-block">
+                {% if book.image %}
+
+                <a href="{% url 'details book' book.id %}"><img src="{{ book.image.url }}" alt="{{ book.title }}"
+                                                                width="200" height="300"></a>
+                {% else %}
+                <a href="{% url 'details book' book.id %}"><img src="{% static 'images/no_image.jpg' %}" alt="No image"
+                                                                width="200" height="300"></a>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+    {% endfor %}
+    <div class="text-center">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-outline-success">Prev</a>
+        {% else %}
+        <a disabled="disabled" class="btn btn-secondary">Prev</a>
+        {% endif %}
+        {{ page_obj.number }}
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }} " class="btn btn-outline-success">Next</a>
+        {% else %}
+        <a disabled="disabled" class="btn btn-secondary">Next</a>
+        {% endif %}
+    </div>
+    {% endblock %}
