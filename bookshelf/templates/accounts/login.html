@@ -10,8 +10,7 @@
         <form class="form-signin" method="POST" action="{% url 'login user' %}">
             <input type="hidden" name="return_url" value="{{ request.GET.next }}"/>
             {% csrf_token %}
-
-            {{ login_form|crispy }}
+            {{ form|crispy }}
             <button class="btn btn-lg btn-primary btn-block mt-4" type="submit">Login</button>
             <p class="mt-5 mb-3 text-muted">Bookshelf&reg; 2020</p>
         </form>
