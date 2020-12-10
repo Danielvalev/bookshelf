@@ -78,17 +78,17 @@ WSGI_APPLICATION = 'bookshelf.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-    # PostgreSQL database
     # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'bookshelf_db',
-    #     'USER': 'postgres',
-    #     'PASSWORD': '5tAA8N8k(tvS@=Sc'
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
+    # PostgreSQL database
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'bookshelf_db',
+        'USER': 'postgres',
+        'PASSWORD': '5tAA8N8k(tvS@=Sc'
+    }
 }
 
 # Password validation
@@ -134,5 +134,5 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = join(BASE_DIR, 'media')
 
-LOGIN_URL = '/auth/login/'  # for @login_required
+LOGIN_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = '/'

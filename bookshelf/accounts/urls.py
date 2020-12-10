@@ -1,6 +1,6 @@
 from django.urls import path
 
-from accounts.views import user_profile, LogoutView, LoginView, RegisterView
+from accounts.views import user_profile, LogoutView, LoginView, RegisterView, user_profile_edit
 
 urlpatterns = [
     # path('login/', login_user, name='login user'),
@@ -8,8 +8,9 @@ urlpatterns = [
     # path('logout/', logout_user, name='logout user'),
     path('logout/', LogoutView.as_view(), name='logout user'),  # CBV
     # path('register/', register_user, name='register user'),
-    path('register/', RegisterView.as_view(), name='register user'), # CBV
+    path('register/', RegisterView.as_view(), name='register user'),  # CBV
     # path('profile/', user_profile, name='current user profile'),
     path('profile/<int:pk>', user_profile, name='user profile'),
+    path('edit/<int:pk>', user_profile_edit, name='user profile edit'),
 
 ]

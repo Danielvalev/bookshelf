@@ -1,0 +1,16 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}Profile Edit | Bookshelf{% endblock %}
+{% block site_content %}
+    <div class="col-md-6 text-center mx-auto">
+        <form method="post" action="{% url 'user profile edit' user.pk %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form_user_profile|crispy }}
+            <hr>
+            {{ form_profile|crispy }}
+            <button class="btn btn-lg btn-success btn-block mt-4" type="submit">Save Changes</button>
+        </form>
+
+    </div>
+{% endblock %}

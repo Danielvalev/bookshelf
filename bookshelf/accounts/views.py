@@ -9,7 +9,7 @@ from django.urls import reverse_lazy
 
 from accounts.models import UserProfile
 from books.models import Book
-from accounts.forms import RegisterForm, ProfileForm, LoginForm
+from accounts.forms import RegisterForm, ProfileForm, LoginForm, UserProfileEditForm
 
 
 # Create your views here.
@@ -113,8 +113,8 @@ class LogoutView(auth_views.LogoutView):
     next_page = reverse_lazy('index')
 
 
-def user_profile(request, pk=None):
-    user = request.user if pk is None else User.objects.get(pk=pk)
+def user_profile(request, pk):
+    user = User.objects.get(pk=pk)
     books = Book.objects.filter(user=request.user)
     if request.user != user.userprofile.user:
         # Cannot do it
@@ -128,5 +128,18 @@ def user_profile(request, pk=None):
             'books': books,
         }
         return render(request, 'accounts/profile.html', context)
+
+
+def user_profile_edit(request, pk):
+    user = User.objects.get(pk=pk)
+    if request.user != user.userprofile.user:
+        return render(request, 'no_permission.html')
+
+    if request.method == 'GET':
+        context = {
+            'form_user_profile': UserProfileEditForm(instance=user),
+            'form_profile': ProfileForm(instance=user.userprofile),
+        }
+        return render(request, 'accounts/profile_edit.html', context)
     else:
         pass
