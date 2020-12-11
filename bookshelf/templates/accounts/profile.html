@@ -5,7 +5,7 @@
     <div class="col-md-6 text-center mx-auto">
         <div class="modal-body">
             {% if profile.profile_picture %}
-                <img src="{{ profile.profile_picture }}" alt="{{ profile.user }}" height="240" border="0">
+                <img src="{{ profile.profile_picture.url }}" alt="{{ profile.user }}" height="240" border="0">
             {% else %}
                 <img src="{% static 'images/profile_picture.png' %}" alt="Default profile picture" height="240"
                      border="0">

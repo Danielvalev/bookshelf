@@ -7,7 +7,6 @@
         <h1 class="display-4 font-italic">Innovative way to share knowledge</h1>
         <p class="lead my-3">Find the book you want and contact the person who share it. Those are the 10 newest
             books in the website.</p>
-        <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">Continue reading...</a></p>
     </div>
 </div>
 <div class="row mb-2">
@@ -28,7 +27,8 @@
                 <a href="{% url 'details book' book.id %}"><img src="{{ book.image.url }}" alt="{{ book.title }}"
                                                                 width="200" height="300"></a>
                 {% else %}
-                <a href="{% url 'details book' book.id %}"><img src="{% static 'images/no_image.jpg' %}" alt="No image" width="200" height="300"></a>
+                <a href="{% url 'details book' book.id %}"><img src="{% static 'images/no_image.jpg' %}" alt="No image"
+                                                                width="200" height="300"></a>
                 {% endif %}
             </div>
         </div>

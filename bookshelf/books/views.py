@@ -69,6 +69,7 @@ def edit_book(request, pk):
     else:
         form = CreateBookForm(
             request.POST,
+            request.FILES,
             instance=book
         )
         if form.is_valid():

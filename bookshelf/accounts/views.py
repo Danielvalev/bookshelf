@@ -142,4 +142,22 @@ def user_profile_edit(request, pk):
         }
         return render(request, 'accounts/profile_edit.html', context)
     else:
-        pass
+        form_user = UserProfileEditForm(
+            request.POST,
+            instance=user
+        )
+        form_profile = ProfileForm(
+            request.POST,
+            request.FILES,
+            instance=user.userprofile
+        )
+        if form_user.is_valid() and form_profile.is_valid():
+            form_user.save()
+            form_profile.save()
+            return redirect('user profile', user.pk)
+
+        context = {
+            'form_user_profile': UserProfileEditForm(instance=user),
+            'form_profile': ProfileForm(instance=user.userprofile),
+        }
+        return render(request, 'accounts/profile_edit.html', context)
